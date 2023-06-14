@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\EmailJob;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/test-job', function () {
+    EmailJob::dispatch(['test' => 'value']);
+
+    return 'ok - test job';
+});
 
 Route::get('/', function () {
     return view('welcome');
